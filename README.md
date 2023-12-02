@@ -5,3 +5,6 @@ TDLib or Three's Derma Lib is a derma library created by Threebow allowing you t
 
 ## Installation
 Move the file into the `lua/autorun/client` of your addon. Do **not** edit the file in case there are multiple copies of it on the server from other addons, to avoid confliction. If you feel a modification is neccesary, open a pull request.
+
+## New functions
+:TextOutlined( pnl, text, font, col, alignment, thickness, thicknessColor, ox, oy, paint )
