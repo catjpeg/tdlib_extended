@@ -280,6 +280,30 @@ classes.Text = function(pnl, text, font, col, alignment, ox, oy, paint)
 	end
 end
 
+classes.TextOutlined = function(pnl, text, font, col, alignment, thickness, thicknessColor, ox, oy, paint)
+	font = font || "Trebuchet24"
+	col = col || Color(255, 255, 255, 255)
+	alignment = alignment || TEXT_ALIGN_CENTER
+	ox = ox || 0
+	oy = oy || 0
+
+	pnl:On("Paint", function(s, w, h)
+		local x = 0
+		if(alignment == TEXT_ALIGN_CENTER) then
+			x = w/2
+		elseif(alignment == TEXT_ALIGN_RIGHT) then
+			x = w
+		end
+
+		thicknessColor = thicknessColor or Color(0,0,0)
+		thickness = thickness or 0.5
+		thicknessColor = thicknessColor or Color(0,0,0)
+		draw.SimpleTextOutlined(text,font,x+ox,h/2+oy,col,alignment,TEXT_ALIGN_CENTER, thickness, thicknessColor )
+	end)
+end
+
+
+
 classes.DualText = function(pnl, toptext, topfont, topcol, bottomtext, bottomfont, bottomcol, alignment, centerSpacing)
 	topfont = topfont || "Trebuchet24"
 	topcol = topcol || Color(0, 127, 255, 255)
@@ -320,7 +344,7 @@ classes.Blur = function(pnl, amount)
 		surface.SetMaterial(blur)
 
 		for i = 1, 3 do
-			blur:SetFloat("$blur", (i / 3) * (amount or 8))
+			blur:SetFloat("$blur", (i / 4) * (amount or 8))
 			blur:Recompute()
 
 			render.UpdateScreenEffectTexture()
